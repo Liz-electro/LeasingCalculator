@@ -10,7 +10,7 @@ Feature: SEB user has to have a ability to calculate Makse rate
       | LeaseType | expectedRate |
       | KAS       | 122,84       |
       | KAP       | 125,79       |
-      | JM        | 125,79       |
+      | JM        | 122,84       |
 
 
   Scenario: User is getting comparison table for KAS
