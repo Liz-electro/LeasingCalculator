@@ -28,11 +28,9 @@ public class MakseCalculationTest {
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
-
         calcPage = new LeaseCalculatorPage(driver);
         popup = new CookiesPopup(driver);
-
-
+        log.info("Starting test application");
     }
 
 
@@ -50,7 +48,6 @@ public class MakseCalculationTest {
     public void userFillImputFields(String carPriceValue, String depositValue) {
         calcPage.setCarPrice(carPriceValue);
         calcPage.setDeposit(depositValue);
-
     }
 
     @And("click on Lisa Vordlusesse button")
@@ -70,7 +67,7 @@ public class MakseCalculationTest {
     }
 
     @Then("leasing type {string} in comparison table is displayed")
-    public void comparisonTableCheck(String leasingType){
+    public void comparisonTableCheck(String leasingType) {
         assertThat(calcPage.getLeasingType()).isEqualTo(leasingType);
     }
 
