@@ -6,7 +6,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +16,7 @@ import pages.LeaseCalculatorPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@Slf4j
 public class MakseCalculationTest {
 
     WebDriver driver;
@@ -41,10 +40,10 @@ public class MakseCalculationTest {
     public void userNavigatesToTheCalculatorPage() {
         driver.get(calcPage.getURL());
         driver.manage().window().maximize();
-        //log.info("Lease calculator: " + calcPage.getURL() + " page is opening");
+        log.info("Lease calculator: " + calcPage.getURL() + " page is opening");
         popup.closePopup();
         driver.switchTo().frame(driver.findElement(calculatorFrame));
-        //log.info("Cookies popup is closing");
+        log.info("Cookies popup is closing");
     }
 
     @When("input {string} value and {string} value")
@@ -65,9 +64,9 @@ public class MakseCalculationTest {
     }
 
 
-    @Then("correct rate {string} is displayed")
-    public void rateCalculationCheck(String expectedRate) {
-        assertThat(calcPage.getMonthlyPayment()).isEqualTo(expectedRate);
+    @Then("correct payment {string} is displayed")
+    public void rateCalculationCheck(String expectedPayment) {
+        assertThat(calcPage.getMonthlyPayment()).isEqualTo(expectedPayment);
     }
 
     @Then("leasing type {string} in comparison table is displayed")
@@ -77,7 +76,7 @@ public class MakseCalculationTest {
 
     @After
     public void tearDown() {
-        //log.info("Closing application");
+        log.info("Closing application");
         if (driver != null) {
             driver.close();
             driver.quit();
